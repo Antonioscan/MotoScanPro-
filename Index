@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MotoScanPro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    img.logo {
+      width: 48px;
+      vertical-align: middle;
+    }
+    h1 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+    .btn:active {
+      opacity: 0.9;
+    }
+    .image-preview {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 20px;
+      display: none;
+    }
+    .scheda {
+      text-align: left;
+      margin-top: 20px;
+      display: none;
+    }
+    .scheda h2 {
+      margin-bottom: 8px;
+    }
+    .scheda .riga {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin: 4px 0;
+    }
+    .scheda p {
+      font-size: 14px;
+      margin-top: 10px;
+      line-height: 1.5;
+    }
+    .btn-ebay {
+      background-color: #0074D9;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 20px;
+      display: none;
+    }
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px;">
+    <img src="https://img.icons8.com/ios-filled/50/motorcycle.png" alt="MotoScanPro Logo" class="logo" />
+    <h1 style="margin: 0;">MotoScanPro</h1>
+  </div>
+
+  <input type="file" id="fileInput" accept="image/*" capture="environment">
+  <button class="btn" onclick="document.getElementById('fileInput').click()">RICAMBI NUOVI</button>
+  <button class="btn" onclick="document.getElementById('fileInput').click()">RICAMBI USATI</button>
+
+  <img id="preview" class="image-preview" alt="Anteprima ricambio" />
+
+  <div class="scheda" id="scheda">
+    <h2>ALBERO FRIZIONE</h2>
+    <div class="riga">
+      <span>Codice</span>
+      <span>Prezzo medio nuovo</span>
+    </div>
+    <div class="riga">
+      <span>67040151A</span>
+      <span>€ 140,00</span>
+    </div>
+    <p>
+      Albero frizione per Ducati Monster 1200, parte del meccanismo di azionamento della frizione manuale.
+      Include leva della frizione integrata con molla di ritorno. Presenta segni di usura, ossidazione e sporco.
+    </p>
+  </div>
+
+  <button class="btn btn-ebay" id="inserzioneBtn">Crea inserzione eBay</button>
+</div>
+
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const preview = document.getElementById('preview');
+  const scheda = document.getElementById('scheda');
+  const inserzioneBtn = document.getElementById('inserzioneBtn');
+
+  fileInput.addEventListener('change', function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        scheda.style.display = 'block';
+        inserzioneBtn.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  inserzioneBtn.addEventListener('click', function () {
+    alert("Bozza dell'inserzione eBay pronta (simulazione).");
+  });
+</script>
+
+</body>
+</html>
