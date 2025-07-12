@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MotoScanPro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="logo.png" alt="MotoScanPro Logo" class="logo" />
+    <h1>MotoScanPro</h1>
+    <p>AI per il riconoscimento ricambi moto</p>
+  </div>
+
+  <!-- Contenuto principale nascosto finché lo splash è visibile -->
+  <div id="app" style="display: none;">
+    <div class="container">
+      <h2>MotoScanPro</h2>
+      <p>Demo riconoscimento ricambi moto con AI</p>
+
+      <input type="file" id="fileInput" accept="image/*" />
+      <button id="snapBtn">Scatta Foto</button>
+
+      <div id="result"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
