@@ -31,3 +31,16 @@ Demo ufficiale del progetto **MotoScanPro** – un sistema intelligente per il *
 ## 📦 Versione Demo
 
 👉 **Link demo GitHub Pages** (attivalo da Settings > Pages):
+---
+
+## 👤 Autore
+
+**Antonio I.** – [Sviluppatore indipendente & meccanico moto](mailto:esempio@email.it)  
+Progetto personale in fase sperimentale, ogni feedback è benvenuto!
+
+---
+
+## 📄 Licenza
+
+Questo progetto è distribuito per **scopi didattici e sperimentali**.  
+Tutti i diritti riservati © 2025 – Antonio I.
