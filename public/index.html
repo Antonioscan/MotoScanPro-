@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <!-- (la stessa struttura e stile che mi hai inviato) -->
+</head>
+<body>
+  <!-- (tutta la UI esattamente identica) -->
+  <script>
+    // (rimane esattamente uguale fino a handlePhoto)
+
+    confirmBtn.onclick = async () => {
+      aiDescription.style.display = "block";
+      aiDescription.innerHTML = "⏳ Analisi in corso con AI...";
+      try {
+        const blob = await fetch(images[0]).then(res => res.blob());
+        const formData = new FormData();
+        formData.append("image", blob);
+
+        const response = await fetch("/api/analyze", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+        const label = data?.label || "Componente sconosciuto";
+        aiDescription.innerHTML = `<strong>Analisi AI:</strong><br><br>🔍 Componente rilevato: <b>${label}</b>`;
+      } catch (err) {
+        aiDescription.innerHTML = "❌ Errore nell'analisi AI.";
+      }
+    };
+  </script>
+</body>
+</html>
