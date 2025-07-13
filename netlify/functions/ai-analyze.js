@@ -20,7 +20,7 @@ export const handler = async (event) => {
       {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${process.env.hf_token}`,
+          Authorization: `Bearer ${process.env.HF_TOKEN}`,
           'Content-Type': 'image/jpeg',
         },
         body: imageBuffer,
