@@ -11,10 +11,8 @@ export const handler = async (event) => {
       };
     }
 
-    // Usa direttamente il base64 con prefisso data:image/... (OpenAI lo accetta così)
     const base64Image = images[0];
 
-    // Verifica presenza token OpenAI
     const openaiToken = process.env.OPENAI_API_KEY;
     if (!openaiToken) {
       return {
@@ -23,7 +21,6 @@ export const handler = async (event) => {
       };
     }
 
-    // Chiamata API OpenAI Vision
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -31,7 +28,7 @@ export const handler = async (event) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4-vision-preview',
+        model: 'gpt-4o',
         messages: [
           {
             role: 'user',
