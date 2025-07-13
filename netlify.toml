@@ -9,8 +9,11 @@ to = "/.netlify/functions/analyze"
 status = 200
 
 [context.production.environment]
-NETLIFY_NEXT_PLUGIN_SKIP = "true"
-HUGGINGFACE_TOKEN = "inserisci-qui-se-vuoi-hardcodare"
+# Token da definire nel pannello Netlify → Site Settings → Environment Variables
+HUGGINGFACE_TOKEN = ""
+
+# Obbligatorio per evitare errori su build con plugin next obsoleti
+NETLIFY_NEXT_PLUGIN_SKIP = "false"
 
 [functions]
 node_bundler = "esbuild"
