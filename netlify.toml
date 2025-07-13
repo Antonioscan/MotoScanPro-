@@ -1,6 +1,6 @@
 [build]
 command = "npm run build"
-publish = "out"
+publish = ".next"
 functions = "netlify/functions"
 
 [[redirects]]
@@ -10,6 +10,7 @@ status = 200
 
 [context.production.environment]
 NETLIFY_NEXT_PLUGIN_SKIP = "true"
+HUGGINGFACE_TOKEN = "inserisci-qui-se-vuoi-hardcodare"
 
 [functions]
 node_bundler = "esbuild"
