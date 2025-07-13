@@ -4,8 +4,8 @@ publish = "out"
 functions = "netlify/functions"
 
 [[redirects]]
-from = "/api/ai-analyze"
-to = "/.netlify/functions/ai-analyze"
+from = "/api/analyze"
+to = "/.netlify/functions/analyze"
 status = 200
 
 [context.production.environment]
