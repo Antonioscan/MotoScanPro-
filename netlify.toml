@@ -7,3 +7,5 @@
   from = "/api/ai-analyze"
   to = "/.netlify/functions/ai-analyze"
   status = 200
+[context.production.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
