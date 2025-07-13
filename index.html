@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MotoScanPro</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 420px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+    }
+    .logo {
+      width: 48px;
+    }
+    h1 {
+      margin: 12px 0 24px;
+      font-size: 26px;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #ff6600;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .btn:active {
+      opacity: 0.85;
+    }
+    #mainPreview {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 16px;
+      display: none;
+    }
+    .miniatures {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      justify-content: center;
+    }
+    .miniature-wrapper {
+      position: relative;
+    }
+    .miniature {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .delete-btn {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background-color: rgba(255, 0, 0, 0.85);
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .delete-btn img {
+      width: 14px;
+      height: 14px;
+      filter: brightness(1000%);
+    }
+    .add-more-btn, .confirm-btn {
+      margin-top: 12px;
+      display: none;
+    }
+    .confirm-btn {
+      background-color: #28a745;
+    }
+    .ai-description {
+      text-align: left;
+      background: #eef6ff;
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 15px;
+      display: none;
+    }
+    input[type="file"] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:center; gap:10px;">
+      <img src="https://img.icons8.com/ios-filled/50/motorcycle.png" class="logo" alt="Logo">
+      <h1>MotoScanPro</h1>
+    </div>
+
+    <button class="btn" id="btnNuovi">RICAMBI NUOVI</button>
+    <button class="btn" id="btnUsati">RICAMBI USATI</button>
+
+    <input type="file" id="cameraInput" accept="image/*" capture="environment" />
+
+    <img id="mainPreview" alt="Preview" />
+
+    <div class="miniatures" id="miniatureContainer"></div>
+
+    <button class="btn add-more-btn" id="addMoreBtn">➕ Aggiungi altre foto</button>
+    <button class="btn confirm-btn" id="confirmBtn">✅ Conferma foto</button>
+
+    <div class="ai-description" id="aiDescription"></div>
+  </div>
+
+  <script>
+    const btnNuovi = document.getElementById("btnNuovi");
+    const btnUsati = document.getElementById("btnUsati");
+    const cameraInput = document.getElementById("cameraInput");
+    const mainPreview = document.getElementById("mainPreview");
+    const miniatureContainer = document.getElementById("miniatureContainer");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const addMoreBtn = document.getElementById("addMoreBtn");
+    const aiDescription = document.getElementById("aiDescription");
+
+    let selectedType = "";
+    let images = [];
+
+    function updateUI() {
+      miniatureContainer.innerHTML = "";
+      images.forEach((src, index) => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "miniature-wrapper";
+        const img = document.createElement("img");
+        img.src = src;
+        img.className = "miniature";
+        img.onclick = () => setMainImage(src);
+        const del = document.createElement("button");
+        del.className = "delete-btn";
+        del.innerHTML = '<img src="https://img.icons8.com/ios-glyphs/30/ffffff/trash.png" />';
+        del.onclick = (e) => {
+          e.stopPropagation();
+          images.splice(index, 1);
+          if (images.length === 0) {
+            resetState();
+          } else {
+            if (mainPreview.src === src) setMainImage(images[0]);
+            updateUI();
+          }
+        };
+        wrapper.append(img, del);
+        miniatureContainer.append(wrapper);
+      });
+      mainPreview.style.display = images.length > 0 ? "block" : "none";
+      confirmBtn.style.display = images.length > 0 ? "block" : "none";
+      addMoreBtn.style.display = images.length < 6 && images.length > 0 ? "block" : "none";
+    }
+
+    function setMainImage(src) {
+      mainPreview.src = src;
+    }
+
+    function resetState() {
+      selectedType = "";
+      images = [];
+      mainPreview.style.display = "none";
+      btnNuovi.style.display = "block";
+      btnUsati.style.display = "block";
+      confirmBtn.style.display = "none";
+      addMoreBtn.style.display = "none";
+      aiDescription.style.display = "none";
+      aiDescription.innerHTML = "";
+      miniatureContainer.innerHTML = "";
+    }
+
+    function handlePhoto(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const src = e.target.result;
+        if (images.length === 0) setMainImage(src);
+        if (images.length < 6) images.push(src);
+        updateUI();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    btnNuovi.onclick = () => {
+      selectedType = "RICAMBI NUOVI";
+      btnUsati.style.display = "none";
+      cameraInput.click();
+    };
+
+    btnUsati.onclick = () => {
+      selectedType = "RICAMBI USATI";
+      btnNuovi.style.display = "none";
+      cameraInput.click();
+    };
+
+    addMoreBtn.onclick = () => cameraInput.click();
+    cameraInput.onchange = handlePhoto;
+
+    confirmBtn.onclick = async () => {
+      aiDescription.style.display = "block";
+      aiDescription.innerHTML = "⏳ Analisi in corso con AI...";
+
+      try {
+        const response = await fetch("https://api.motoscanpro.ai/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            tipo: selectedType,
+            immagini: images
+          })
+        });
+        const data = await response.json();
+        aiDescription.innerHTML = `<strong>Analisi AI:</strong><br><br>${data.descrizione || "Nessuna descrizione ricevuta."}`;
+      } catch (error) {
+        aiDescription.innerHTML = "❌ Errore nell'analisi AI.";
+        console.error(error);
+      }
+    };
+  </script>
+</body>
+</html>
