@@ -1,6 +1,9 @@
 {
   "name": "moto-scan-pro",
   "version": "1.0.0",
+  "description": "MotoScanPro - Riconoscimento componenti moto da foto con AI",
+  "author": "Antonio I.",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,5 +15,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "node-fetch": "^2.6.7"
-  }
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "nextjs",
+    "netlify",
+    "moto",
+    "ai",
+    "huggingface",
+    "photo-recognition"
+  ]
 }
