@@ -1,24 +1,13 @@
-:root {
-  --primary: #ff5c00;
-  --primary-dark: #d94e00;
-  --secondary: #0073e6;
-  --background: #f9f9f9;
-  --text-dark: #222;
-  --text-muted: #777;
-  --card-bg: #fff;
-  --card-border: #ccc;
-}
+/* styles/Home.module.css */
 
 .container {
-  font-family: Arial, sans-serif;
-  background: var(--background);
   padding: 24px;
   max-width: 500px;
   margin: auto;
   border-radius: 16px;
   text-align: center;
   min-height: 100vh;
-  color: var(--text-dark);
+  background: var(--bg-alt);
 }
 
 .header {
@@ -33,7 +22,7 @@
 
 .subtitle {
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--text-alt);
 }
 
 .buttonGroup {
@@ -54,17 +43,6 @@
   font-size: 16px;
 }
 
-.addMore {
-  background-color: #ffa500;
-  color: #000;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 12px;
-}
-
 .preview {
   margin-bottom: 24px;
 }
@@ -74,7 +52,7 @@
   max-height: 300px;
   object-fit: contain;
   border-radius: 12px;
-  border: 2px solid var(--card-border);
+  border: 2px solid #ccc;
   margin-bottom: 10px;
 }
 
@@ -95,14 +73,26 @@
 }
 
 .activeThumb {
-  border: 3px solid var(--primary);
+  border-color: var(--primary);
+  border-width: 3px;
+}
+
+.addMore {
+  background-color: #ffa500;
+  color: #000;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
 }
 
 .resultBox {
-  background: var(--card-bg);
+  background: var(--bg-alt);
   padding: 16px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   text-align: left;
   margin-top: 20px;
 }
@@ -119,7 +109,7 @@
 }
 
 .ebayBtn {
-  background-color: var(--secondary);
+  background-color: #0073e6;
   color: #fff;
   padding: 12px 20px;
   border: none;
