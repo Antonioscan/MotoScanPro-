@@ -1,1 +1,3 @@
-import logo from '../public/mioLogo.svg';
+<h1 style={{ fontSize: 32, color: '#ff5c00', fontWeight: 'bold', marginBottom: 24 }}>
+  MotoScanPro
+</h1>
