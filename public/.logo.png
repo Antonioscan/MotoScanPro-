@@ -1,3 +1,1 @@
-<h1 style={{ fontSize: 32, color: '#ff5c00', fontWeight: 'bold', marginBottom: 24 }}>
-  MotoScanPro
-</h1>
+<img src="/logo.png" alt="MotoScanPro Logo" style={{ width: '60px', marginBottom: '12px' }} />
