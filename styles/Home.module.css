@@ -1,24 +1,4 @@
-/* Palette elegante */
-:root {
-  --primary: #ff5c00;          /* arancio acceso per le call-to-action   */
-  --primary-dark: #d94e00;
-  --bg: #f7f9fc;               /* sfondo chiaro e professionale          */
-  --surface: #ffffff;
-  --surface-alt: #f0f2f7;
-  --text: #1a1a1a;
-  --border: #dcdfe6;
-  --blue: #0066ff;
-  --shadow: 0 6px 14px rgba(0,0,0,0.08);
-  --radius: 14px;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-}
 
-html, body {
-  padding: 0;
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-}
 
 /* ---------- Layout ---------- */
 .container {
