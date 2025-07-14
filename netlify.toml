@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+  functions = "netlify/functions"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[[redirects]]
+  from = "/api/analyze"
+  to = "/.netlify/functions/analyze"
+  status = 200
+
+[context.production.environment]
+  # ❗ NON scrivere qui il valore del token.
+  # Inserisci OPENAI_API_KEY nel pannello Netlify → Site Settings → Environment Variables
+  OPENAI_API_KEY = ""
+  # Obbligatorio per plugin Next.js
+  NETLIFY_NEXT_PLUGIN_SKIP = "false"
+
+[functions]
+  node_bundler = "esbuild"
