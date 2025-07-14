@@ -1,0 +1,148 @@
+/* Palette elegante */
+:root {
+  --primary: #ff5c00;          /* arancio acceso per le call-to-action   */
+  --primary-dark: #d94e00;
+  --bg: #f7f9fc;               /* sfondo chiaro e professionale          */
+  --surface: #ffffff;
+  --surface-alt: #f0f2f7;
+  --text: #1a1a1a;
+  --border: #dcdfe6;
+  --blue: #0066ff;
+  --shadow: 0 6px 14px rgba(0,0,0,0.08);
+  --radius: 14px;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* ---------- Pulsanti ---------- */
+.cta {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 22px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: background .2s ease;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.cta:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.cta:hover:not(:disabled) {
+  background: var(--primary-dark);
+}
+
+.addMore {
+  background: var(--surface-alt);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+/* ---------- Anteprima immagini ---------- */
+.preview {
+  margin-bottom: 28px;
+}
+
+.mainImage {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.thumbGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.thumbnail {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.activeThumb {
+  border-color: var(--primary);
+}
+
+/* ---------- Risultato AI ---------- */
+.resultBox {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-top: 24px;
+  text-align: left;
+}
+
+.copyBtn {
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+/* ---------- Bottone eBay ---------- */
+.ebayBtn {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 14px 24px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  margin: 32px auto 0;
+  display: block;
+}
